@@ -1,0 +1,63 @@
+#ifndef __FUZZY_PID_H
+#define __FUZZY_PID_H
+/*--------------------------------------------- ? ? ? -----------------------------------------------*/
+#ifndef NULL
+#define NULL (void *)0
+#endif
+
+
+/*---------------------------------------------  ? ? ? ?  ---------------------------------------------*/
+/* pid?? */
+typedef struct
+{
+	float p; /* ???? */
+	float i; /* ???? */
+	float d; /* ???? */
+}pid_factor_type;
+
+/* pid???? */
+typedef struct
+{
+	pid_factor_type error_big_pid; /* ???/?/?????????? */
+	pid_factor_type error_medium_pid;
+	pid_factor_type error_small_pid;
+
+	float current_error; /* ???? */
+	float previous_error; /* ???? */
+	
+	float max_error; /* ???? */
+	float integrate_error; /* ???? */
+	float differential_error; /* ???? */
+	float control_cycle; /* ???? */
+	float error_threshold_big; /* ????? */
+	float error_threshold_small; /* ????? */
+	float error_dead_space; /* ???? */
+
+	float output_limit_abs; /* ???? */
+	float *output_limit_pointer_abs; /* ??????(????????????) */
+}pid_control_type;
+
+/*----------------------  ? ? ? ? ?  -------------------------*/
+
+///* pid */
+//pid_control_type cm_speed_pid =
+//{
+//	.error_big_pid    = {.p = 0.8f, .i = 0, .d = 0}, /* ???/?/?????????? */
+//	.error_threshold_big   = 20, /* ????? */
+//	.error_medium_pid = {.p = 0.4f, .i = 0, .d = 0},
+//	.error_threshold_small = 10, /* ????? */
+//	.error_small_pid  = {.p = 0.1f, .i = 0, .d = 0},
+//	.error_dead_space = 0,
+
+//	.control_cycle         = 1, /* ????, ???????? */
+
+//	/* ??????????????? */
+//	.output_limit_abs         = 500, /* ???? */
+//	.output_limit_pointer_abs = NULL, /* ??????(????????????) */
+//};
+
+/*---------------------------------------------  ? ? ? ?  ---------------------------------------------*/
+/* pid?? */
+float pid_control(pid_control_type *pid_struct, float error);
+
+#endif

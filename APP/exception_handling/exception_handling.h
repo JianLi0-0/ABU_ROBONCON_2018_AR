@@ -1,0 +1,5 @@
+#ifndef __EXCEPTION_HANDLING_H
+#define __EXCEPTION_HANDLING_H
+
+void EXCEPTION_HANDLING(void);
+#endif
